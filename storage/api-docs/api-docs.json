@@ -1,0 +1,166 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Project API Documentation",
+        "description": "Enjoy with our documentation of project API.",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api/v1",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all users",
+                "description": "Get Users Data",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ApiResponseError": {
+                "required": [
+                    "base_url",
+                    "status",
+                    "message",
+                    "status_code"
+                ],
+                "properties": {
+                    "base_url": {
+                        "type": "string",
+                        "format": "url"
+                    },
+                    "status": {
+                        "type": "boolean",
+                        "default": "false"
+                    },
+                    "status_code": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ApiResponseErrorValidation": {
+                "required": [
+                    "base_url",
+                    "status",
+                    "message",
+                    "status_code"
+                ],
+                "properties": {
+                    "base_url": {
+                        "type": "string",
+                        "format": "url"
+                    },
+                    "status": {
+                        "type": "boolean",
+                        "default": "false"
+                    },
+                    "status_code": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ApiResponseSuccess": {
+                "required": [
+                    "base_url",
+                    "status",
+                    "message",
+                    "data"
+                ],
+                "properties": {
+                    "base_url": {
+                        "type": "string",
+                        "format": "url"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "required": [
+                    "base_url",
+                    "status",
+                    "message",
+                    "data"
+                ],
+                "properties": {
+                    "base_url": {
+                        "type": "string",
+                        "format": "url"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "Bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
