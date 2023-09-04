@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Auth Store Function
  * ----------------------------------------------------
@@ -15,7 +13,6 @@ if(!function_exists('auth_store')){
         return $response->json();
     }
 }
-
 
 /**
  * Subscriptions Store Function
