@@ -22,6 +22,7 @@ if(!function_exists('subscriptions_store')){
     function subscriptions_store(){
         $token = auth_store()['data']['token']['access_token'] ?? '';
         $response = Http::withToken($token)->get('http://127.0.0.1:8001/api/V2.0/subscriptions');
-        return $response->json();
+        $response = $response->json();
+        return $response['data'] ?? [];
     }
 }
